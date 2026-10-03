@@ -83,7 +83,8 @@ textarea{resize:vertical;min-height:70px;line-height:1.5}
   .sb-bd.on{opacity:1;pointer-events:auto}
   .sb-x{display:grid;place-items:center;flex:none;width:30px;height:30px;margin-left:auto;border:0;border-radius:8px;background:#222228;color:#c9c9d0;font-size:15px;line-height:1;cursor:pointer}
   .sb-x:hover{background:#2e2e36}
-  .hm{display:inline-block}
+  .hm{display:inline-block;transition:color .2s,background-color .2s,border-color .2s}
+  .hm[aria-expanded="true"]{background:rgba(242,201,76,.16);border-color:var(--ac);color:var(--tx)}
  .ed-wrap,.rep{grid-template-columns:1fr}
  .stats{grid-template-columns:repeat(2,1fr)}
  .top,.body{padding-left:16px;padding-right:16px}
