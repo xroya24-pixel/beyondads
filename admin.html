@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Admin · Beyond Ads Indonesia</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root{--bg:#f5f5f2;--pn:#fff;--tx:#1b1b1f;--mu:#6b6b73;--bd:#e4e4de;--ac:#f2c94c;--act:#1b1b1f;--sb:#16161a;--sbt:#c9c9d0;--ok:#16a34a;--wa:#b45309;--in:#eceae2;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101013;--pn:#1a1a1f;--tx:#f1f1f3;--mu:#9a9aa3;--bd:#2c2c33;--act:#f2c94c;--in:#232329}}
+:root[data-theme="dark"]{--bg:#101013;--pn:#1a1a1f;--tx:#f1f1f3;--mu:#9a9aa3;--bd:#2c2c33;--act:#f2c94c;--in:#232329}
+*,*::before,*::after{box-sizing:inherit}
+html,body{height:100%;margin:0}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg);color:var(--tx);font-size:14px;display:flex}
+button,input,select,textarea{font:inherit;color:inherit}
+aside{width:248px;background:var(--sb);color:var(--sbt);display:flex;flex-direction:column;padding:18px 12px;flex:none;overflow:auto}
+.brand{display:flex;align-items:center;gap:10px;padding:4px 8px 18px;color:#fff;font-weight:700}
+.brand i{width:26px;height:26px;border-radius:7px;background:var(--ac);display:block}
+.brand small{display:block;font-weight:500;font-size:11px;color:var(--sbt)}
+.gl{font-size:11px;font-weight:600;padding:16px 10px 6px;color:#8b8b95}
+.nv{display:flex;width:100%;align-items:center;gap:10px;background:none;border:0;color:var(--sbt);padding:9px 10px;border-radius:8px;cursor:pointer;text-align:left}
+.nv:hover{background:#222228}
+.nv.on{background:var(--ac);color:#1b1b1f;font-weight:600}
+.nv .c{margin-left:auto;font-size:11px;opacity:.8}
+.user{margin-top:auto;padding:12px 10px 0;border-top:1px solid #2a2a31;font-size:12px}
+main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{display:flex;align-items:center;gap:12px;padding:14px 28px;background:var(--pn);border-bottom:1px solid var(--bd)}
+.top h1{font-size:18px;margin:0;font-weight:700}
+.top .sp{flex:1}
+.hm{display:none}
+.st{font-size:12px;color:var(--mu)}
+.st.d{color:var(--wa);font-weight:600}
+.btn{border:1px solid var(--bd);background:var(--pn);padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:600;font-size:13px}
+.btn.p{background:var(--act);color:var(--bg);border-color:var(--act)}
+:root:not([data-theme="dark"]) .btn.p{color:#fff}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn.p{color:#1b1b1f}}
+.btn.dg{color:#dc2626}
+.btn:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,.ed:focus-visible{outline:2px solid var(--ac);outline-offset:1px}
+.body{flex:1;overflow:auto;padding:24px 28px 60px}
+.pn{background:var(--pn);border:1px solid var(--bd);border-radius:12px;padding:18px;margin-bottom:16px}
+.pn h2{font-size:14px;margin:0 0 4px;font-weight:700}
+.pn .sub{color:var(--mu);font-size:12px;margin:0 0 14px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px 16px}
+.grid .full{grid-column:1/-1}
+label{display:block;font-size:12px;font-weight:600;margin-bottom:5px}
+input,select,textarea{width:100%;background:var(--in);border:1px solid var(--bd);border-radius:8px;padding:9px 11px;font-size:13px}
+textarea{resize:vertical;min-height:70px;line-height:1.5}
+.rep{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.rep .pn{margin:0}
+.rep .pn h2{display:flex;align-items:center;gap:8px}
+.tag{font-size:11px;font-weight:600;background:var(--in);padding:2px 8px;border-radius:99px;color:var(--mu)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.stats .pn{margin:0}
+.stats b{font-size:26px;display:block}
+.stats span{font-size:12px;color:var(--mu)}
+.sec-list{display:grid;gap:8px}
+.row{display:flex;align-items:center;gap:12px;padding:11px 12px;border:1px solid var(--bd);border-radius:10px;background:var(--pn);width:100%;text-align:left;cursor:pointer}
+.row:hover{border-color:var(--ac)}
+.row .t{flex:1;min-width:0}
+.row .t b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .t span{font-size:12px;color:var(--mu)}
+.bd{font-size:11px;font-weight:600;padding:3px 9px;border-radius:99px}
+.bd.pub{background:#dcfce7;color:#166534}
+.bd.dr{background:#fef3c7;color:#92400e}
+.bar{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.bar input,.bar select{width:auto;flex:1;min-width:140px}
+.ed-wrap{display:grid;grid-template-columns:1fr 290px;gap:16px;align-items:start}
+.tb{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px}
+.tb button{border:1px solid var(--bd);background:var(--in);border-radius:6px;padding:5px 10px;cursor:pointer;font-weight:700;font-size:12px}
+.ed{min-height:320px;background:var(--in);border:1px solid var(--bd);border-radius:8px;padding:14px;line-height:1.7}
+.ed h2{font-size:18px}
+.cover{aspect-ratio:16/9;border:1.5px dashed var(--bd);border-radius:10px;display:grid;place-items:center;color:var(--mu);font-size:12px;background-size:cover;background-position:center;margin-bottom:10px}
+.hint{font-size:11px;color:var(--mu);margin-top:4px}
+.toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--act);color:var(--bg);padding:10px 18px;border-radius:10px;font-weight:600;font-size:13px;opacity:0;pointer-events:none;transition:opacity .2s}
+.toast.on{opacity:1}
+.sb-bd{display:none}
+.sb-x{display:none}
+@media(max-width:900px){
+  aside{position:fixed;inset:0 auto 0 0;z-index:20;transform:translateX(-100%);visibility:hidden;overscroll-behavior:contain;transition:transform .2s,visibility .2s;padding-left:calc(12px + env(safe-area-inset-left,0px));padding-bottom:calc(18px + env(safe-area-inset-bottom,0px))}
+  aside.open{transform:none;visibility:visible}
+  .sb-bd{display:block;position:fixed;inset:0;z-index:15;background:rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:opacity .2s}
+  .sb-bd.on{opacity:1;pointer-events:auto}
+  .sb-x{display:grid;place-items:center;flex:none;width:30px;height:30px;margin-left:auto;border:0;border-radius:8px;background:#222228;color:#c9c9d0;font-size:15px;line-height:1;cursor:pointer}
+  .sb-x:hover{background:#2e2e36}
+  .hm{display:inline-block}
+ .ed-wrap,.rep{grid-template-columns:1fr}
+ .stats{grid-template-columns:repeat(2,1fr)}
+ .top,.body{padding-left:16px;padding-right:16px}
+}
+@media(max-width:560px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="sb-bd" id="sbb"></div>
+<aside id="sb">
+  <div class="brand"><i></i><div>Beyond Ads<small>Panel Admin</small></div><button class="sb-x" id="sbx" aria-label="Tutup menu">✕</button></div>
+ <button class="nv on" data-v="ov">▦ Ringkasan</button>
+ <div class="gl">Konten Home</div>
+ <div id="nav-home"></div>
+ <div class="gl">Insight</div>
+ <button class="nv" data-v="art">✎ Artikel <span class="c" id="ac"></span></button>
+ <div class="user">Admin · admin@beyondads.id<br><button class="btn" id="th" style="margin-top:8px;width:100%;background:#222228;color:#c9c9d0;border-color:#33333b">Ganti tema</button></div>
+</aside>
+<main>
+ <div class="top">
+  <button class="btn hm" id="hm" aria-label="Menu" aria-controls="sb" aria-expanded="false">☰</button>
+  <h1 id="ttl">Ringkasan</h1><div class="sp"></div>
+  <span class="st" id="stt">Semua tersimpan</span>
+  <button class="btn p" id="sv" style="display:none">Simpan perubahan</button>
+ </div>
+ <div class="body" id="bd"></div>
+</main>
+<div class="toast" id="ts"></div>
+
+<script>
+// ===== Skema konten Home: [key, label, default, 'ta' untuk textarea] =====
+const rep=(p,n,label,f)=>Array.from({length:n},(_,i)=>({t:label+' '+(i+1),f:f.map(([k,l,d,t])=>[p+(i+1)+'.'+k,l,Array.isArray(d)?d[i]:d,t])}));
+const SECT=[
+{id:'nav',label:'Navbar & Logo',sub:'Teks yang muncul di semua section.',g:[
+ {t:'Logo',f:[['logo','Nama brand','BEYOND ADS'],['logosub','Sub brand','INDONESIA']]},
+ {t:'Menu',f:[['m1','Menu 1','Beranda'],['m2','Menu 2','Layanan'],['m3','Menu 3','Portofolio'],['m4','Menu 4','Tentang Kami'],['m5','Menu 5','Insight'],['m6','Menu 6','Kontak']]}]},
+{id:'hero',label:'Hero',sub:'Bagian paling atas halaman.',g:[{t:'Teks utama',f:[
+ ['hero.eyebrow','Teks kecil di atas judul','Mitra digital untuk pertumbuhan bisnis Anda',,'full'],
+ ['hero.t1','Judul baris 1','Bangun Brand.'],['hero.t2','Judul baris 2','Tumbuhkan Bisnis.'],
+ ['hero.t3','Judul baris 3 (kuning)','Go Beyond.'],['hero.btn','Teks tombol','Mulai Konsultasi Sekarang'],
+ ['hero.desc','Deskripsi','Kami membantu bisnis membangun brand yang kuat, mengelola media sosial secara profesional, menjangkau lebih banyak calon pelanggan melalui iklan digital, hingga memiliki website yang siap mendukung pertumbuhan bisnis.','ta']]},
+ {t:'Tautan tombol',f:[['hero.url','URL tujuan tombol','https://wa.me/62']]}]},
+{id:'layanan',label:'Layanan',sub:'Judul section dan 4 kartu layanan.',g:[
+ {t:'Teks section',f:[['lay.eyebrow','Label','LAYANAN KAMI'],['lay.btn','Teks tombol','Jelajahi Semua Layanan'],
+  ['lay.t1','Judul','Kami Hadir untuk Membantu Bisnis Anda','ta'],['lay.t2','Judul abu-abu','Go Beyond.'],
+  ['lay.desc','Deskripsi','Dari membangun identitas hingga mendatangkan pelanggan, kami menggabungkan kreativitas, strategi, dan teknologi dalam satu partner.','ta']]},
+ ...rep('lay.c',4,'Kartu',[['title','Judul',['Branding','Manajemen Media Sosial','Iklan Digital','Pembuatan Website']],
+  ['tag','Tagline',['Bangun identitas yang kuat','Tetap relevan, tetap terhubung','Jangkau audiens yang tepat','Ubah pengunjung jadi pelanggan']],
+  ['desc','Deskripsi',['Logo, identitas visual, panduan merek, dan kebutuhan branding lainnya.','Perencanaan konten, desain, copywriting, hingga publishing secara konsisten.','Strategi dan pengelolaan Meta Ads untuk mendatangkan calon pelanggan yang relevan.','Website profesional yang tidak hanya terlihat bagus, tetapi juga mendukung perjalanan pelanggan.'],'ta'],
+  ['link','Teks tautan',['Lihat Detail','Lihat Detail','Lihat Detail','Lihat Detail']]])]},
+{id:'kenapa',label:'Kenapa Kami & Metode',sub:'Keunggulan dan The Beyond Method.',g:[
+ {t:'Teks section',f:[['why.eyebrow','Label','KENAPA BEYOND ADS INDONESIA?'],['why.title','Judul (kuning)','Lebih dari Sekadar Iklan.'],
+  ['why.desc','Deskripsi','Kami bukan sekadar penyedia jasa. Kami adalah partner strategis yang berkomitmen untuk membantu bisnis Anda bertumbuh dengan solusi digital yang terintegrasi.','ta']]},
+ ...rep('why.f',4,'Keunggulan',[['title','Judul',['Strategis','Kreatif','Terintegrasi','Berorientasi Hasil']],
+  ['desc','Deskripsi',['Setiap aktivitas digital dimulai dari tujuan bisnis.','Kami menerjemahkan strategi menjadi visual dan komunikasi yang menarik.','Branding, media sosial, iklan dan website bekerja sebagai satu ekosistem.','Setiap aktivitas diarahkan untuk membantu bisnis berkembang.'],'ta']]),
+ {t:'The Beyond Method',f:[['met.eyebrow','Label','METODE KAMI'],['met.title','Judul','THE BEYOND METHOD'],['met.desc','Deskripsi','Langkah strategis untuk membangun kehadiran digital yang berdampak nyata.','ta']]},
+ ...rep('met.s',5,'Langkah',[['title','Judul',['Discover','Build','Engage','Reach','Grow']],
+  ['desc','Deskripsi',['Memahami bisnis, produk, target pasar, dan kompetitor.','Membangun positioning, branding, dan fondasi digital.','Mengemas konten yang membangun audiens dan interaksi.','Menjangkau calon pelanggan melalui iklan digital.','Mengoptimalkan website, kampanye, dan data untuk pertumbuhan bisnis.'],'ta']])]},
+{id:'porto',label:'Portofolio',sub:'Judul section dan 4 kartu proyek.',g:[
+ {t:'Teks section',f:[['por.eyebrow','Label','PORTOFOLIO'],['por.btn','Teks tombol','Lihat Semua Portofolio'],
+  ['por.t1','Judul','Karya Nyata untuk Berbagai Bisnis','ta'],['por.t2','Judul abu-abu','Go Beyond.'],
+  ['por.desc','Deskripsi','Kami telah membantu berbagai brand dan bisnis dari berbagai industri untuk tumbuh lebih kuat di dunia digital.','ta']]},
+ ...rep('por.c',4,'Proyek',[['cat','Kategori',['Media Sosial & Konten Kreatif','Media Sosial & Kampanye','Media Sosial & Branding','Branding & Property Marketing']],
+  ['title','Nama proyek',['Air Minum Bandung','Laundry Bandung Bersih','GOR Badminton Setiabudhi','Review Roomah']],
+  ['desc','Deskripsi',['Meningkatkan kehadiran digital dan komunikasi brand yang lebih kuat.','Meningkatkan awareness dan menjangkau pelanggan baru.','Membangun identitas brand dan meningkatkan engagement.','Membangun brand dan meningkatkan minat pasar properti.'],'ta'],
+  ['img','URL foto',['','','','']]])]},
+{id:'paket',label:'Paket Layanan',sub:'Judul section dan 4 paket.',g:[
+ {t:'Teks section',f:[['pkt.eyebrow','Label','PAKET LAYANAN'],['pkt.badge','Teks badge unggulan','Paling Populer'],
+  ['pkt.title','Judul (kuning)','Solusi Digital yang Sesuai dengan Kebutuhan Bisnis Anda.','ta'],['pkt.desc','Deskripsi','Pilih paket yang paling tepat untuk membantu bisnis Anda mencapai tujuan.','ta']]},
+ ...rep('pkt.p',4,'Paket',[['name','Nama paket',['Starter','Growth','Professional','Custom']],
+  ['btn','Teks tombol',['Hubungi Kami','Hubungi Kami','Hubungi Kami','Hubungi Kami']],
+  ['desc','Deskripsi',['Untuk bisnis yang baru memulai kehadiran digital.','Untuk bisnis yang ingin mendapatkan lebih banyak pelanggan.','Untuk bisnis yang ingin memaksimalkan ekosistem digital yang lengkap.','Untuk kebutuhan bisnis yang lebih kompleks.'],'ta'],
+  ['list','Fitur (satu per baris)',['Branding\nMedia Sosial','Media Sosial\nIklan Digital','Branding\nMedia Sosial\nIklan Digital\nWebsite','Semua Layanan\nStrategi Khusus'],'ta']])]}
+];
+const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const load=(k,d)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}};
+const store=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}};
+let C=load('ba_content',{}),A=load('ba_articles',null),dirty=false,view='ov',cur=null;
+if(!A)A=[
+ {id:1,title:'5 Alasan Bisnis Lokal Perlu Branding yang Konsisten',slug:'5-alasan-bisnis-lokal-perlu-branding',cat:'Branding',excerpt:'Branding yang konsisten membantu pelanggan mengingat dan mempercayai bisnis Anda.',body:'<h2>Mengapa konsistensi penting</h2><p>Tulis isi artikel di sini.</p>',cover:'',status:'pub',date:'2026-09-20',meta:''},
+ {id:2,title:'Panduan Memulai Iklan Meta untuk Pemula',slug:'panduan-iklan-meta-pemula',cat:'Iklan Digital',excerpt:'',body:'<p>Draf artikel…</p>',cover:'',status:'dr',date:'2026-09-28',meta:''}];
+const val=(k,d)=>k in C?C[k]:d;
+const toast=m=>{const t=$('#ts');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),1800)};
+function setDirty(v){dirty=v;$('#stt').textContent=v?'Ada perubahan belum disimpan':'Semua tersimpan';$('#stt').className='st'+(v?' d':'');$('#sv').style.display=(v&&view!=='ed')?'':'none'}
+
+// ===== Navigasi =====
+const sb=$('#sb'),sbb=$('#sbb'),hm=$('#hm');
+const setSb=o=>{sb.classList.toggle('open',o);sbb.classList.toggle('on',o);hm.setAttribute('aria-expanded',o?'true':'false')};
+$('#nav-home').innerHTML=SECT.map(s=>`<button class="nv" data-v="${s.id}">${s.label}</button>`).join('');
+function go(v){
+ view=v;cur=v==='ed'?cur:null;
+ document.querySelectorAll('.nv').forEach(b=>b.classList.toggle('on',b.dataset.v===(v==='ed'?'art':v)));
+ setSb(false);
+ const s=SECT.find(x=>x.id===v);
+ $('#ttl').textContent=v==='ov'?'Ringkasan':v==='art'?'Artikel Insight':v==='ed'?(cur&&cur.isNew?'Artikel baru':'Edit artikel'):s.label;
+ $('#sv').textContent='Simpan perubahan';
+ if(v==='ov')ov();else if(v==='art')list();else if(v==='ed')editor();else form(s);
+ setDirty(dirty&&v!=='ed');$('#bd').scrollTop=0;
+}
+document.addEventListener('click',e=>{const b=e.target.closest('.nv');if(b){if(dirty&&view!=='ed'&&!confirm('Perubahan belum disimpan. Tetap pindah?'))return;if(dirty)dirty=false;go(b.dataset.v)}});
+$('#hm').onclick=()=>setSb(!sb.classList.contains('open'));
+$('#sbx').onclick=()=>setSb(false);
+sbb.onclick=()=>setSb(false);
+addEventListener('keydown',e=>{if(e.key==='Escape')setSb(false)});
+matchMedia('(max-width:900px)').addEventListener('change',e=>{if(!e.matches)setSb(false)});
+$('#th').onclick=()=>{const r=document.documentElement,d=r.dataset.theme==='dark'||(!r.dataset.theme&&matchMedia('(prefers-color-scheme:dark)').matches);r.dataset.theme=d?'light':'dark'};
+
+// ===== Ringkasan =====
+function ov(){
+ const pub=A.filter(a=>a.status==='pub').length;
+ $('#bd').innerHTML=`<div class="stats"><div class="pn"><b>${SECT.length}</b><span>Bagian konten Home</span></div><div class="pn"><b>${A.length}</b><span>Total artikel</span></div><div class="pn"><b>${pub}</b><span>Terbit</span></div><div class="pn"><b>${A.length-pub}</b><span>Draf</span></div></div>
+ <div class="pn"><h2>Edit konten Home</h2><p class="sub">Pilih bagian yang ingin diubah.</p><div class="sec-list">${SECT.map(s=>`<button class="row nv" data-v="${s.id}" style="color:inherit"><div class="t"><b>${s.label}</b><span>${s.sub}</span></div>›</button>`).join('')}</div></div>
+ <div class="pn"><h2>Artikel terbaru</h2><p class="sub">Kelola tulisan di menu Insight.</p><div class="sec-list">${A.slice(-3).reverse().map(rowA).join('')}</div></div>`;
+ bindRows();
+}
+// ===== Form konten Home =====
+function form(s){
+ const inp=([k,l,d,t,full])=>{const v=esc(val(k,d)),w=(t==='ta'||full)?'full':'';
+  return `<div class="${w}"><label for="${k}">${l}</label>${t==='ta'?`<textarea id="${k}" data-k="${k}">${v}</textarea>`:`<input id="${k}" data-k="${k}" value="${v}">`}</div>`};
+ const single=s.g.filter(g=>!/ \d$/.test(g.t)),reps=s.g.filter(g=>/ \d$/.test(g.t));
+ let h=single.map(g=>`<div class="pn"><h2>${g.t}</h2><div class="grid">${g.f.map(inp).join('')}</div></div>`).join('');
+ const groups={};reps.forEach(g=>{const n=g.t.replace(/ \d$/,'');(groups[n]=groups[n]||[]).push(g)});
+ Object.entries(groups).forEach(([n,gs])=>{h+=`<div class="pn" style="background:none;border:0;padding:0"><h2 style="margin:6px 0 10px">${n}</h2><div class="rep">${gs.map(g=>`<div class="pn"><h2><span class="tag">${g.t.split(' ').pop()}</span>${n}</h2><div class="grid">${g.f.map(f=>inp([f[0],f[1],f[2],'ta'===f[3]?'ta':'',1])).join('')}</div></div>`).join('')}</div></div>`});
+ $('#bd').innerHTML=`<p class="sub" style="margin-top:0;color:var(--mu)">${s.sub} Teks di sini akan tampil di halaman Home setelah disimpan.</p>`+h;
+ $('#bd').oninput=e=>{const k=e.target.dataset.k;if(!k)return;C[k]=e.target.value;setDirty(true)};
+}
+$('#sv').onclick=()=>{store('ba_content',C);setDirty(false);toast('Konten Home tersimpan')};
+// ===== Insight: daftar =====
+const rowA=a=>`<button class="row" data-id="${a.id}"><div class="t"><b>${esc(a.title||'(Tanpa judul)')}</b><span>${esc(a.cat||'Tanpa kategori')} · ${a.date}</span></div><span class="bd ${a.status}">${a.status==='pub'?'Terbit':'Draf'}</span></button>`;
+let q='',fs='';
+function list(){
+ $('#ac').textContent=A.length;
+ $('#bd').innerHTML=`<div class="bar"><input id="q" placeholder="Cari judul artikel…" value="${esc(q)}" aria-label="Cari"><select id="fs" aria-label="Status"><option value="">Semua status</option><option value="pub">Terbit</option><option value="dr">Draf</option></select><button class="btn p" id="nw">+ Artikel baru</button></div><div class="sec-list" id="al"></div>`;
+ $('#fs').value=fs;
+ const draw=()=>{const r=A.filter(a=>a.title.toLowerCase().includes(q.toLowerCase())&&(!fs||a.status===fs)).sort((x,y)=>y.date.localeCompare(x.date));
+  $('#al').innerHTML=r.length?r.map(rowA).join(''):'<div class="pn"><p class="sub" style="margin:0">Belum ada artikel yang cocok. Klik “Artikel baru” untuk mulai menulis.</p></div>';bindRows()};
+ $('#q').oninput=e=>{q=e.target.value;draw()};$('#fs').onchange=e=>{fs=e.target.value;draw()};
+ $('#nw').onclick=()=>{cur={id:Date.now(),title:'',slug:'',cat:'',excerpt:'',body:'',cover:'',status:'dr',date:new Date().toISOString().slice(0,10),meta:'',isNew:true};go('ed')};
+ draw();
+}
+function bindRows(){document.querySelectorAll('.row[data-id]').forEach(r=>r.onclick=()=>{cur={...A.find(a=>a.id==r.dataset.id)};go('ed')})}
+// ===== Insight: editor =====
+const slug=s=>s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+function editor(){
+ const a=cur;
+ $('#bd').innerHTML=`<div class="ed-wrap"><div>
+  <div class="pn"><label for="a-t">Judul artikel</label><input id="a-t" value="${esc(a.title)}" placeholder="Tulis judul yang jelas dan menarik" style="font-size:16px;font-weight:600">
+   <label for="a-s" style="margin-top:12px">Slug (alamat URL)</label><input id="a-s" value="${esc(a.slug)}"><p class="hint">/insight/<span id="sp">${esc(a.slug)}</span></p>
+   <label style="margin-top:12px">Isi artikel</label>
+   <div class="tb" role="toolbar"><button data-c="formatBlock" data-a="h2">H2</button><button data-c="formatBlock" data-a="h3">H3</button><button data-c="bold">B</button><button data-c="italic"><i>I</i></button><button data-c="insertUnorderedList">• Daftar</button><button data-c="insertOrderedList">1. Daftar</button><button data-c="formatBlock" data-a="blockquote">“ Kutipan</button><button data-c="link">Tautan</button><button data-c="removeFormat">Hapus format</button></div>
+   <div class="ed" id="a-b" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Isi artikel">${a.body}</div>
+   <label for="a-e" style="margin-top:12px">Ringkasan singkat</label><textarea id="a-e" placeholder="Tampil di kartu artikel dan hasil pencarian (maks. 160 karakter)" maxlength="160">${esc(a.excerpt)}</textarea>
+   <label for="a-m" style="margin-top:12px">Meta description (SEO)</label><input id="a-m" value="${esc(a.meta)}" maxlength="160"></div></div>
+  <div>
+   <div class="pn"><h2>Penerbitan</h2><label for="a-st" style="margin-top:10px">Status</label><select id="a-st"><option value="dr">Draf</option><option value="pub">Terbit</option></select>
+    <label for="a-d" style="margin-top:12px">Tanggal</label><input type="date" id="a-d" value="${a.date}">
+    <label for="a-c" style="margin-top:12px">Kategori</label><input id="a-c" list="cats" value="${esc(a.cat)}"><datalist id="cats"><option>Branding<option>Media Sosial<option>Iklan Digital<option>Website<option>Tips Bisnis</datalist>
+    <div style="display:flex;gap:8px;margin-top:16px"><button class="btn p" id="a-sv" style="flex:1">Simpan</button><button class="btn" id="a-bk">Batal</button></div>
+    ${a.isNew?'':'<button class="btn dg" id="a-dl" style="width:100%;margin-top:8px">Hapus artikel</button>'}</div>
+   <div class="pn"><h2>Gambar sampul</h2><p class="sub">Rasio 16:9, disarankan 1200×675 px.</p><div class="cover" id="cv">Belum ada gambar</div><label for="a-i">URL gambar</label><input id="a-i" value="${esc(a.cover)}" placeholder="https://…"><p class="hint">Unggah file langsung membutuhkan penyimpanan di server.</p></div>
+  </div></div>`;
+ $('#a-st').value=a.status;
+ const cv=()=>{const u=$('#a-i').value;$('#cv').style.backgroundImage=u?`url("${u.replace(/"/g,'')}")`:'';$('#cv').textContent=u?'':'Belum ada gambar'};cv();
+ $('#a-i').oninput=cv;
+ let manual=!!a.slug;
+ $('#a-t').oninput=e=>{if(!manual){$('#a-s').value=slug(e.target.value);$('#sp').textContent=$('#a-s').value}};
+ $('#a-s').oninput=e=>{manual=true;$('#sp').textContent=e.target.value};
+ document.querySelector('.tb').onmousedown=e=>e.preventDefault();
+ document.querySelector('.tb').onclick=e=>{const b=e.target.closest('button');if(!b)return;$('#a-b').focus();
+  if(b.dataset.c==='link'){const u=prompt('Alamat tautan (https://…)');if(u)document.execCommand('createLink',false,u)}else document.execCommand(b.dataset.c,false,b.dataset.a||null)};
+ $('#a-bk').onclick=()=>go('art');
+ if($('#a-dl'))$('#a-dl').onclick=()=>{if(confirm('Hapus artikel ini secara permanen?')){A=A.filter(x=>x.id!==a.id);store('ba_articles',A);toast('Artikel dihapus');go('art')}};
+ $('#a-sv').onclick=()=>{
+  const t=$('#a-t').value.trim();if(!t){toast('Judul artikel wajib diisi');$('#a-t').focus();return}
+  const n={...a,title:t,slug:$('#a-s').value||slug(t),body:$('#a-b').innerHTML,excerpt:$('#a-e').value,meta:$('#a-m').value,status:$('#a-st').value,date:$('#a-d').value,cat:$('#a-c').value,cover:$('#a-i').value};delete n.isNew;
+  const i=A.findIndex(x=>x.id===n.id);i<0?A.push(n):A[i]=n;
+  store('ba_articles',A);toast(n.status==='pub'?'Artikel diterbitkan':'Draf tersimpan');go('art')};
+}
+$('#ac').textContent=A.length;go('ov');
+</script>
+</body>
+</html>
