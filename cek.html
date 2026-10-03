@@ -59,10 +59,13 @@ fetch('/index.html?diag='+Date.now(),{cache:'no-store'})
      : 'File yang diterima MASIH versi LAMA ('+t.length+' byte) — inilah penyebabnya');
  });
 
+let n=0;
 const tes=()=>{
-  const d=q('fr').contentDocument, w=q('fr').contentWindow;
+  const d=q('fr').contentDocument;
   const mb=d&&d.querySelector('.mb');
-  if(!mb){q('e').textContent='✘ tombol .mb tidak ditemukan di dalam frame';return;}
+  if(!mb){ if(++n<50) return setTimeout(tes,150);
+    q('e').textContent='✘ iframe tidak termuat dalam ~7 detik'; return; }
+  const w=q('fr').contentWindow;
   const bar=()=>w.getComputedStyle(d.querySelector('.mb i')).backgroundColor;
   const sebelum=bar();
   setTimeout(()=>{
@@ -70,7 +73,7 @@ const tes=()=>{
     setTimeout(()=>{
       const sesudah=bar();
       const jadiKuning=sesudah.indexOf('242, 201, 76')>-1;
-      mark(q('e'),sebelum!==sesudah,'garis: '+sebelum+'  →  '+sesudah);
+      mark(q('e'),sebelum!==sesudah,'garis: '+sebelum+'  \u2192  '+sesudah);
       mark(q('f'),jadiKuning,jadiKuning
         ? 'Warna berubah benar (kuning #f2c94c)'
         : 'Warna TIDAK berubah di browser Anda');
@@ -79,10 +82,7 @@ const tes=()=>{
     },800);
   },400);
 };
-
-const fr=q('fr');
-if(fr.contentDocument&&fr.contentDocument.readyState==='complete') tes();
-else fr.addEventListener('load',()=>setTimeout(tes,300));
+tes();
 
 q('h').textContent='User-Agent: '+navigator.userAgent;
 q('i').textContent='Lebar jendela: '+innerWidth+'px | dpr: '+devicePixelRatio
