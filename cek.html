@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Diagnosa Cache — Beyond Ads</title>
+<style>
+:root{--y:#f2c94c}
+body{margin:0;padding:20px;background:#0a0a0e;color:#fff;font:16px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace}
+h1{font-size:20px;margin:0 0 14px}
+section{background:#15151b;border:1px solid #2c2c33;border-radius:10px;padding:14px;margin-bottom:14px}
+h2{font-size:15px;color:var(--y);margin:0 0 8px}
+div.r{font-size:17px;margin:3px 0;word-break:break-all}
+.ok{color:#4ade80}.bad{color:#f87171}.warn{color:#fbbf24}
+iframe{width:500px;height:620px;border:2px solid #2c2c33;border-radius:10px;background:#000}
+p{font-size:14px;color:#a1a1aa;margin:8px 0 0}
+</style>
+</head>
+<body>
+<h1>Diagnosa: warna tombol hamburger</h1>
+
+<section>
+<h2>1. File yang diterima browser Anda</h2>
+<div class="r" id="a">memuat…</div>
+<div class="r" id="b"></div>
+<div class="r" id="c"></div>
+<div class="r" id="d"></div>
+</section>
+
+<section>
+<h2>2. Uji langsung (iframe lebar 500px)</h2>
+<div class="r" id="e">memuat…</div>
+<div class="r" id="f"></div>
+<div class="r" id="g"></div>
+</section>
+
+<section>
+<h2>3. Info perangkat</h2>
+<div class="r" id="h"></div>
+<div class="r" id="i"></div>
+</section>
+
+<iframe id="fr" src="/index.html?diag-frame=1"></iframe>
+
+<script>
+const q=id=>document.getElementById(id);
+const mark=(el,ok,txt)=>{el.className='r '+(ok?'ok':'bad');el.textContent=(ok?'✔ ':'✘ ')+txt};
+
+fetch('/index.html?diag='+Date.now(),{cache:'no-store'})
+ .then(r=>{q('b').textContent='Cache-Control: '+(r.headers.get('cache-control')||'(tidak ada)');
+           q('c').textContent='Last-Modified: '+(r.headers.get('last-modified')||'(tidak ada)');
+           return r.text()})
+ .then(t=>{mark(q('a'),t.includes('.mb[aria-expanded="true"] i{background:var(--y)}'),
+   t.includes('.mb[aria-expanded="true"] i{background:var(--y)}')
+    ? 'Aturan warna versi BARU ditemukan di file ('+t.length+' byte)'
+    : 'File yang diterima MASIH versi LAMA ('+t.length+' byte) — ini penyebabnya');
+  q('d').textContent='Warna tombol di file ini: '+(t.includes('--y:#f2c94c')?'ada (--y)':'tidak ada');});
+
+const fr=q('fr');
+fr.addEventListener('load',()=>{setTimeout(()=>{
+ const d=fr.contentDocument,w=fr.contentWindow;
+ const mb=d.querySelector('.mb');
+ if(!mb){q('e').textContent='✘ tombol .mb tidak ditemukan di dalam frame';return}
+ const bar=()=>w.getComputedStyle(d.querySelector('.mb i')).backgroundColor;
+ const before=bar();
+ mb.click();
+ setTimeout(()=>{
+  const after=bar();
+  mark(q('e'),before!==after,'garis: '+before+'  →  '+after);
+  mark(q('f'),after.indexOf('242, 201, 76')>-1,after.indexOf('242, 201, 76')>-1
+    ? 'Warna berubah benar (kuning #f2c94c)'
+    : 'Warna TIDAK berubah di browser Anda');
+  q('g').textContent='aria-expanded: '+mb.getAttribute('aria-expanded')
+    +' | menu: '+w.getComputedStyle(d.querySelector('#mn')).visibility
+    +' | dpr: '+w.devicePixelRatio;
+ },700);
+},900)});
+
+q('h').textContent='User-Agent: '+navigator.userAgent;
+q('i').textContent='Lebar jendela: '+innerWidth+'px | dpr: '+devicePixelRatio
+ +' | dark mode: '+(matchMedia('(prefers-color-scheme: dark)').matches?'ya':'tidak');
+</script>
+</body>
+</html>
